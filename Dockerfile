@@ -1,9 +1,10 @@
-FROM node:10-alpine
+FROM node:alpine
 
 RUN apk add --no-cache -U git openssh-client build-base python openjdk8 unzip curl jq
 RUN mkdir -p /.cache/yarn
 RUN mkdir -p /.yarn
 RUN adduser -D -u 70003 jenkins
+RUN npm install -g apollo
 
 ENV SONAR_SCANNER_OPTS="-Xmx512m -Dsonar.host.url=http://neo-qube.dev.a.bill.com:8080/"
 ENV PATH $PATH:/sonar-scanner/bin
